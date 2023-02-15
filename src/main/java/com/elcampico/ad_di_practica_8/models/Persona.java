@@ -3,7 +3,7 @@ package com.elcampico.ad_di_practica_8.models;
 import java.util.Date;
 import java.util.logging.Logger;
 
-public class Persona {
+public class Persona extends Object {
     private int id;
     private String dni;
     private String nombre;
@@ -15,7 +15,21 @@ public class Persona {
     private Date created_at;
     private Date updated_at;
 
-    //Constructor
+    //Constructor vacío
+    public Persona(){
+        this.id = 0;
+        this.dni = "";
+        this.nombre = "";
+        this.apellido1 = "";
+        this.apellido2 = "";
+        this.telefono = "";
+        this.sexo = "";
+        this.user_id = 0;
+        this.created_at = new Date();
+        this.updated_at = new Date();
+    }
+    
+    //Constructor con parámetros
     public Persona(int id, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, int user_id, Date created_at, Date updated_at) {
         this.id = id;
         this.dni = dni;

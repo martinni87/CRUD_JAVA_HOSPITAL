@@ -7,7 +7,15 @@ public class Medico extends Persona {
     private int especialidad_id;
     private int horario_id;
 
-    /**
+    //Constructor vacío
+    public Medico(){
+        super();
+        this.numero_colegiado = 0;
+        this.especialidad_id = 0;
+        this.horario_id = 0;
+    }
+    
+   /**
      * <h1>CONSTRUCTOR</h1>
      * @param id: integer autoincremental, valor único
      * @param numero_colegiado: integer, valor único
@@ -23,6 +31,7 @@ public class Medico extends Persona {
      * @param created_at: formato fecha
      * @param updated_at: formato fecha
      */
+    //Constructor parametrizado
     public Medico(int id, int numero_colegiado, String dni, String nombre,
                    String apellido1, String apellido2, String telefono,
                    String sexo, int especialidad_id, int horario_id, int user_id,
