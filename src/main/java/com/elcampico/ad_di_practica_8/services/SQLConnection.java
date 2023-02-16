@@ -1,4 +1,4 @@
-package com.elcampico.ad_di_practica_8.SingletonDB;
+package com.elcampico.ad_di_practica_8.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ public class SQLConnection {
             //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL,UNAME,PASSWD);
-            System.out.println("Conexión realizada con éxito.");
+            //System.out.println("Conexión realizada con éxito.");
             
             /**
              * Importante.

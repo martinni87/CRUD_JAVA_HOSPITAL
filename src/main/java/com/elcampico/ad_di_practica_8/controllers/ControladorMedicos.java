@@ -1,6 +1,6 @@
 package com.elcampico.ad_di_practica_8.controllers;
 
-import static com.elcampico.ad_di_practica_8.SingletonDB.SQLConnection.getConnection;
+import static com.elcampico.ad_di_practica_8.services.SQLConnection.getConnection;
 import com.elcampico.ad_di_practica_8.models.Medico;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 
@@ -83,7 +85,7 @@ public class ControladorMedicos {
             ps.setString(2, filtro2);
             ps.setString(3, filtro3);
             
-            System.out.print(ps.toString());
+            //System.out.print(ps.toString());
             
             //Llamamos al método makePetition para realizar la petición y pintar resultados en la tabla registro
             makePetition(ps, tablaRegistros);
@@ -91,6 +93,35 @@ public class ControladorMedicos {
         catch (SQLException e){
             System.err.println("Error en la conexión a la base de datos: " + e.getMessage());
 
+        }
+    }
+    
+    //Verificar que un registro existe previo a lanzar la vista de edición
+    public Medico checkExistingReg(DefaultTableModel tablaRegistros, String numero_colegiado){
+        Medico medico = null;
+        try {
+            String query = "SELECT * FROM medicos WHERE numero_colegiado = ?";
+            String filtro = numero_colegiado;
+        
+            ps = conn.prepareStatement(query);
+            ps.setString(1, filtro);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                medico = new Medico(
+                        rs.getInt("id"), rs.getInt("numero_colegiado"), rs.getString("dni"),
+                        rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),
+                        rs.getString("telefono"),rs.getString("sexo"),rs.getInt("especialidad_id"),
+                        rs.getInt("horario_id"),rs.getInt("user_id"),
+                        rs.getDate("created_at"),rs.getDate("updated_at")
+                );
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ControladorMedicos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            return medico;
         }
     }
 }
