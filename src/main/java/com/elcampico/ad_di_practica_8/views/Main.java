@@ -86,11 +86,6 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla_medicos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_medicosMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tabla_medicos);
         if (tabla_medicos.getColumnModel().getColumnCount() > 0) {
             tabla_medicos.getColumnModel().getColumn(0).setHeaderValue("Nº Colegiado");
@@ -389,17 +384,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_exportarCSV_medicosActionPerformed
 
-    private void tabla_medicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_medicosMouseClicked
-        //Detectando doble click sobre una celda
-        if (evt.getClickCount() == 2){
-            JTable target = (JTable) evt.getSource();
-            int row = target.getSelectedRow();
-            int column = target.getSelectedColumn();
-            JOptionPane.showMessageDialog(null, tabla_medicos.getValueAt(row, column)); // get the value of a row and column.
-
-        }
-    }//GEN-LAST:event_tabla_medicosMouseClicked
-
     private void btn_ayuda_medicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda_medicosActionPerformed
         String ayuda = """
                        En el presente menú puede realizar las siguientes acciones:
@@ -425,9 +409,9 @@ public class Main extends javax.swing.JFrame {
         //Verificamos que podemos pasar ese valor a una nueva instancia de Formulario
         if (medico != null){
             FormularioMedicos nuevoFormulario = new FormularioMedicos();
-            nuevoFormulario.setValores(medico);
-            this.setVisible(false);
+            nuevoFormulario.setFormForEdit(medico);
             nuevoFormulario.setVisible(true);
+            this.dispose();
         }
         //Caso contrario, se informa de que es necesario pasar un valor correcto.
         else{

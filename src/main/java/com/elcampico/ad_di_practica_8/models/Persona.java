@@ -107,4 +107,11 @@ public class Persona extends Object {
         this.updated_at = updated_at;
     }
     
+    //Print all
+
+    @Override
+    public String toString() {
+        return "Persona{" + "id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", telefono=" + telefono + ", sexo=" + sexo + ", user_id=" + user_id + ", created_at=" + created_at + ", updated_at=" + updated_at + '}';
+    }
+    
 }

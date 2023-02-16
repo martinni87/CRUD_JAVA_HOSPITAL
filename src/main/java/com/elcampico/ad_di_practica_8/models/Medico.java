@@ -66,4 +66,13 @@ public class Medico extends Persona {
     public void setHorario_id(int horario_id) {
         this.horario_id = horario_id;
     }
+    
+    //Print all
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Medico{" + "numero_colegiado=" + numero_colegiado + ", especialidad_id=" + especialidad_id + ", horario_id=" + horario_id + '}';
+    }
+    
 }

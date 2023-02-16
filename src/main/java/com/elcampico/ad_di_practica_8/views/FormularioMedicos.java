@@ -1,30 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.elcampico.ad_di_practica_8.views;
 
+import com.elcampico.ad_di_practica_8.controllers.ControladorMedicos;
 import com.elcampico.ad_di_practica_8.models.Medico;
+import java.awt.Color;
+import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author martin
- */
 public class FormularioMedicos extends javax.swing.JFrame {
+    
+    //Flag que indica si el formulario es de creación (true) o de edición (false)
+    boolean formularioNuevo = true;
+    
+    //Variables globales
+    Medico medico;
+    ControladorMedicos controladorMedicos;
 
-    /**
-     * Creates new form FormularioMedicos
-     */
     public FormularioMedicos() {
         initComponents();
+        
+        this.setTitle("Formulario médicos");
+        
+        //Modo creación nuevo, seteamos visibilidad de botones nuevo y editar
         btn_nuevo.setVisible(true);
         btn_editar.setVisible(false);
+        
+        //Inicializamos un médico vacío
+        medico = new Medico();
+        controladorMedicos = new ControladorMedicos();
     }
     
-    public void setValores(Medico medico){
+    public void setFormForEdit(Medico medico){
+        //Inicializamos médico a nivel global
+        this.medico = medico;
+        
+        //Cambiamos texto del botón limpiar a resetear para el modo de edición
+        btn_limpiar.setText("Resetear");
+        
+        //Seteamos el flag de formularioNuevo a false, para indicar que estamos en modo edición
+        formularioNuevo = false;
+        
+        //Modificamos elementos que se ven, bloqueados, y colores para el caso de modo edición
         btn_nuevo.setVisible(false);
         btn_editar.setVisible(true);
+        tf_numColegiado.setEditable(false);
+        tf_idUsuario.setEditable(false);
+        tf_numColegiado.setBackground(Color.LIGHT_GRAY);
+        tf_idUsuario.setBackground(Color.LIGHT_GRAY);
+        
+        //Seteamos valores de campos a datos existentes en la BD
+        tf_numColegiado.setText(Integer.toString(medico.getNumero_colegiado()));
+        tf_dni.setText(medico.getDni());
+        tf_nombre.setText(medico.getNombre());
+        tf_apellido1.setText(medico.getApellido1());
+        tf_apellido2.setText(medico.getApellido2());
+        tf_telefono.setText(medico.getTelefono());
+        tf_sexo.setText(medico.getSexo());
+        tf_especialidad.setText(Integer.toString(medico.getEspecialidad_id()));
+        tf_horario.setText(Integer.toString(medico.getHorario_id()));
+        tf_idUsuario.setText(Integer.toString(medico.getUser_id()));
     }
 
     /**
@@ -64,9 +98,9 @@ public class FormularioMedicos extends javax.swing.JFrame {
         btn_nuevo = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
         btn_borrar = new javax.swing.JButton();
-        btn_volver = new javax.swing.JButton();
+        btn_limpiar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(228, 228, 228));
@@ -208,18 +242,33 @@ public class FormularioMedicos extends javax.swing.JFrame {
         });
 
         btn_editar.setText("Editar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
         btn_borrar.setText("Borrar");
+        btn_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_borrarActionPerformed(evt);
+            }
+        });
 
-        btn_volver.setText("Limpiar");
+        btn_limpiar.setText("Limpiar");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel11.setText("Mensajes del servidor");
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_volver.setText("Volver");
+        btn_volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_volverActionPerformed(evt);
             }
         });
 
@@ -243,13 +292,13 @@ public class FormularioMedicos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(btn_volver)))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_borrar, btn_editar, btn_nuevo, btn_volver, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_borrar, btn_editar, btn_limpiar, btn_nuevo, btn_volver});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,8 +310,8 @@ public class FormularioMedicos extends javax.swing.JFrame {
                     .addComponent(btn_nuevo)
                     .addComponent(btn_editar)
                     .addComponent(btn_borrar)
-                    .addComponent(jButton1)
-                    .addComponent(btn_volver))
+                    .addComponent(btn_volver)
+                    .addComponent(btn_limpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -292,10 +341,10 @@ public class FormularioMedicos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
         int userResponse = JOptionPane.showConfirmDialog(this,
                 "¿Desea volver a la ventana anterior?\nToda la información no guardada se perderá",
                 "Aviso",
@@ -305,13 +354,78 @@ public class FormularioMedicos extends javax.swing.JFrame {
         //System.out.println("User response:" + userResponse);
         // valor 0 == YES, valor 1 == NO
         if (userResponse == 0){
-            this.setVisible(false);
             new Main().setVisible(true);
+            this.dispose();
         }
         
         
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_volverActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        //Recuperamos valores iniciales del objeto médico.
+        tf_numColegiado.setText(Integer.toString(medico.getNumero_colegiado()));
+        tf_dni.setText(medico.getDni());
+        tf_nombre.setText(medico.getNombre());
+        tf_apellido1.setText(medico.getApellido1());
+        tf_apellido2.setText(medico.getApellido2());
+        tf_telefono.setText(medico.getTelefono());
+        tf_sexo.setText(medico.getSexo());
+        tf_especialidad.setText(Integer.toString(medico.getEspecialidad_id()));
+        tf_horario.setText(Integer.toString(medico.getHorario_id()));
+        tf_idUsuario.setText(Integer.toString(medico.getUser_id()));
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed
+        int userResponse = JOptionPane.showConfirmDialog(this,
+                "Está a punto de eliminar un registro. Esta operación no puede deshacerse ¿Desea continuar?",
+                "ALERTA",
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.WARNING_MESSAGE, null);
+        // valor 0 == YES, valor 1 == NO
+        if (userResponse == 0){
+            controladorMedicos.deleteData(medico);
+            String operacion = "Se ha eliminado el registro con id: " + medico.getId();
+            JOptionPane.showMessageDialog(this,operacion, "Borrado ejecutado", JOptionPane.INFORMATION_MESSAGE,null);
+            new Main().setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
+        }
+    }//GEN-LAST:event_btn_borrarActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        HashMap<String,String> filtros = new HashMap<>();
+
+        int userResponse = JOptionPane.showConfirmDialog(this,
+                "Está a punto de editar un registro. ¿Desea continuar?",
+                "ALERTA",
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.WARNING_MESSAGE, null);
+        
+        // valor 0 == YES, valor 1 == NO
+        if (userResponse == 0){
+            filtros.put("id",medico.getId() + "");
+            filtros.put("numero_colegiado", tf_numColegiado.getText());
+            filtros.put("dni", tf_dni.getText());
+            filtros.put("nombre", tf_nombre.getText());
+            filtros.put("apellido1", tf_apellido1.getText());
+            filtros.put("apellido2", tf_apellido2.getText());
+            filtros.put("telefono", tf_telefono.getText());
+            filtros.put("sexo", tf_sexo.getText());
+            filtros.put("especialidad_id", tf_especialidad.getText());
+            filtros.put("horario_id", tf_horario.getText());
+            filtros.put("user_id", tf_idUsuario.getText());
+            
+            controladorMedicos.updateData(filtros);
+            String operacion = "Se ha actualizado el registro con id: " + medico.getId();
+            JOptionPane.showMessageDialog(this,operacion, "Registro actualizado", JOptionPane.INFORMATION_MESSAGE,null);
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
+        }
+    }//GEN-LAST:event_btn_editarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,9 +466,9 @@ public class FormularioMedicos extends javax.swing.JFrame {
     private javax.swing.JTextArea area_mensajes;
     private javax.swing.JButton btn_borrar;
     private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JButton btn_volver;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
