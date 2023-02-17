@@ -55,7 +55,23 @@ public class Main extends javax.swing.JFrame {
         btn_ayuda_medicos = new javax.swing.JToggleButton();
         btn_editar_medicos = new javax.swing.JButton();
         tab_pacientes = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla_medicos1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        tf_numColegiado_medicos1 = new javax.swing.JTextField();
+        tf_nombre_medicos1 = new javax.swing.JTextField();
+        tf_apellido1_medicos1 = new javax.swing.JTextField();
+        btn_limpiar_medicos1 = new javax.swing.JButton();
+        btn_nuevo_medicos1 = new javax.swing.JButton();
+        btn_exportarCSV_medicos1 = new javax.swing.JButton();
+        btn_salir1 = new javax.swing.JButton();
+        btn_buscar_medicos1 = new javax.swing.JButton();
+        btn_ayuda_medicos1 = new javax.swing.JToggleButton();
+        btn_editar_medicos1 = new javax.swing.JButton();
         tab_citas = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -251,23 +267,187 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Médicos", tab_medicos);
 
-        jLabel2.setText("Pacientes");
+        tabla_medicos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Num. Colegiado", "Nombre", "Apellido 1", "Apellido 2", "Telefono", "Especialidad", "Horario"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tabla_medicos1);
+        if (tabla_medicos1.getColumnModel().getColumnCount() > 0) {
+            tabla_medicos1.getColumnModel().getColumn(0).setHeaderValue("Nº Colegiado");
+            tabla_medicos1.getColumnModel().getColumn(1).setHeaderValue("Nombre");
+            tabla_medicos1.getColumnModel().getColumn(2).setHeaderValue("Apellido 1");
+            tabla_medicos1.getColumnModel().getColumn(3).setHeaderValue("Apellido 2");
+            tabla_medicos1.getColumnModel().getColumn(4).setHeaderValue("Teléfono");
+            tabla_medicos1.getColumnModel().getColumn(5).setHeaderValue("Especialidad");
+            tabla_medicos1.getColumnModel().getColumn(6).setHeaderValue("Horario");
+        }
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel7.setText("Filtros de búsqueda");
+
+        jLabel8.setText("Nº Colegiado");
+
+        jLabel9.setText("Nombre");
+
+        jLabel10.setText("Apellido 1");
+
+        btn_limpiar_medicos1.setText("Limpiar");
+        btn_limpiar_medicos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiar_medicos1ActionPerformed(evt);
+            }
+        });
+
+        btn_nuevo_medicos1.setText("Nuevo");
+        btn_nuevo_medicos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevo_medicos1ActionPerformed(evt);
+            }
+        });
+
+        btn_exportarCSV_medicos1.setText("Exportar a *.csv");
+        btn_exportarCSV_medicos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exportarCSV_medicos1ActionPerformed(evt);
+            }
+        });
+
+        btn_salir1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btn_salir1.setForeground(new java.awt.Color(255, 51, 51));
+        btn_salir1.setText("Salir");
+        btn_salir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salir1ActionPerformed(evt);
+            }
+        });
+
+        btn_buscar_medicos1.setText("Buscar");
+        btn_buscar_medicos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscar_medicos1ActionPerformed(evt);
+            }
+        });
+
+        btn_ayuda_medicos1.setText("Ayuda");
+        btn_ayuda_medicos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ayuda_medicos1ActionPerformed(evt);
+            }
+        });
+
+        btn_editar_medicos1.setText("Editar");
+        btn_editar_medicos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_medicos1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_numColegiado_medicos1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                            .addComponent(tf_nombre_medicos1)
+                            .addComponent(tf_apellido1_medicos1))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(317, 317, 317)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_exportarCSV_medicos1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_nuevo_medicos1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btn_ayuda_medicos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_buscar_medicos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_limpiar_medicos1, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                            .addComponent(btn_salir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_editar_medicos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_salir1)
+                        .addComponent(btn_ayuda_medicos1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_limpiar_medicos1)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(tf_numColegiado_medicos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_buscar_medicos1)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(tf_nombre_medicos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_nuevo_medicos1)
+                    .addComponent(btn_editar_medicos1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(tf_apellido1_medicos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_exportarCSV_medicos1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout tab_pacientesLayout = new javax.swing.GroupLayout(tab_pacientes);
         tab_pacientes.setLayout(tab_pacientesLayout);
         tab_pacientesLayout.setHorizontalGroup(
             tab_pacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tab_pacientesLayout.createSequentialGroup()
-                .addGap(0, 329, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(0, 330, Short.MAX_VALUE))
+            .addGroup(tab_pacientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tab_pacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         tab_pacientesLayout.setVerticalGroup(
             tab_pacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tab_pacientesLayout.createSequentialGroup()
-                .addGap(0, 254, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(0, 254, Short.MAX_VALUE))
+            .addGroup(tab_pacientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Pacientes", tab_pacientes);
@@ -300,7 +480,7 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,6 +601,34 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_editar_medicosActionPerformed
 
+    private void btn_limpiar_medicos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiar_medicos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiar_medicos1ActionPerformed
+
+    private void btn_nuevo_medicos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo_medicos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_nuevo_medicos1ActionPerformed
+
+    private void btn_exportarCSV_medicos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarCSV_medicos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_exportarCSV_medicos1ActionPerformed
+
+    private void btn_salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_salir1ActionPerformed
+
+    private void btn_buscar_medicos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_medicos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscar_medicos1ActionPerformed
+
+    private void btn_ayuda_medicos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda_medicos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ayuda_medicos1ActionPerformed
+
+    private void btn_editar_medicos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_medicos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editar_medicos1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -459,27 +667,43 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btn_ayuda_medicos;
+    private javax.swing.JToggleButton btn_ayuda_medicos1;
     private javax.swing.JButton btn_buscar_medicos;
+    private javax.swing.JButton btn_buscar_medicos1;
     private javax.swing.JButton btn_editar_medicos;
+    private javax.swing.JButton btn_editar_medicos1;
     private javax.swing.JButton btn_exportarCSV_medicos;
+    private javax.swing.JButton btn_exportarCSV_medicos1;
     private javax.swing.JButton btn_limpiar_medicos;
+    private javax.swing.JButton btn_limpiar_medicos1;
     private javax.swing.JButton btn_nuevo_medicos;
+    private javax.swing.JButton btn_nuevo_medicos1;
     private javax.swing.JButton btn_salir;
+    private javax.swing.JButton btn_salir1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel tab_citas;
     private javax.swing.JPanel tab_medicos;
     private javax.swing.JPanel tab_pacientes;
     private javax.swing.JTable tabla_medicos;
+    private javax.swing.JTable tabla_medicos1;
     private javax.swing.JTextField tf_apellido1_medicos;
+    private javax.swing.JTextField tf_apellido1_medicos1;
     private javax.swing.JTextField tf_nombre_medicos;
+    private javax.swing.JTextField tf_nombre_medicos1;
     private javax.swing.JTextField tf_numColegiado_medicos;
+    private javax.swing.JTextField tf_numColegiado_medicos1;
     // End of variables declaration//GEN-END:variables
 }
