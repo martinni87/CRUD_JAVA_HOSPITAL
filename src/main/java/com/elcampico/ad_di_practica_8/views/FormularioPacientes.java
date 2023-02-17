@@ -52,7 +52,7 @@ public class FormularioPacientes extends javax.swing.JFrame {
         tf_id.setBackground(Color.LIGHT_GRAY);
         btn_nuevo.setVisible(true);
         btn_borrar.setVisible(false);
-        tf_fecha_nacimiento.setText("05/06/1987"); //Ejemplo para el usuario
+        tf_fecha_nacimiento.setText("1987-06-05"); //Ejemplo para el usuario
     }
     
     public void setFormForEdit(Paciente paciente){
