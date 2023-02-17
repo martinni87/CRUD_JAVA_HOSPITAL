@@ -138,17 +138,22 @@
                           <Component id="tf_dni" min="-2" pref="197" max="-2" attributes="0"/>
                           <Component id="tf_numColegiado" min="-2" pref="197" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace pref="125" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tf_sexo" min="-2" pref="197" max="-2" attributes="0"/>
-                                  <Component id="tf_telefono" min="-2" pref="197" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="tf_telefono" min="-2" pref="197" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="tf_sexo" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -275,17 +280,13 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tf_telefono">
             </Component>
-            <Component class="javax.swing.JTextField" name="tf_sexo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="hombre/mujer"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="tf_especialidad">
             </Component>
             <Component class="javax.swing.JTextField" name="tf_horario">
             </Component>
             <Component class="javax.swing.JTextField" name="tf_idUsuario">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tf_sexo">
             </Component>
           </SubComponents>
         </Container>

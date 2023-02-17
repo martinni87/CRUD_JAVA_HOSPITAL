@@ -22,7 +22,6 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tf_usuario = new javax.swing.JTextField();
-        tf_password = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btn_iniciar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
@@ -37,6 +36,7 @@ public class Login extends javax.swing.JFrame {
         filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 30), new java.awt.Dimension(30, 30), new java.awt.Dimension(30, 30));
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 30), new java.awt.Dimension(30, 30), new java.awt.Dimension(30, 30));
         filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(90, 30), new java.awt.Dimension(90, 30), new java.awt.Dimension(90, 30));
+        tf_password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 250, 250));
@@ -68,12 +68,6 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(tf_usuario, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        getContentPane().add(tf_password, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel3.setText("Login");
@@ -159,12 +153,26 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 3;
         getContentPane().add(filler9, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(tf_password, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
-        boolean check = checkCredenciales(tf_usuario.getText(),tf_password.getText());
+        String password = "";
+        String user = tf_usuario.getText();
+        
+        for (int i = 0; i < tf_password.getPassword().length; i++){
+            password += tf_password.getPassword()[i];
+        }
+
+        
+        boolean check = checkCredenciales(user,password);
         if (!check){
             JOptionPane.showMessageDialog(this, 
                     "Credenciales incorrectas. Revise y vuelva a intentarlo.\n(Pista: U:root, P:root)", 
@@ -172,7 +180,7 @@ public class Login extends javax.swing.JFrame {
         }
         else{
             JOptionPane.showMessageDialog(this, 
-                  "Credenciales validadas","Login OK", JOptionPane.INFORMATION_MESSAGE,null);
+                  "Credenciales validadas. Bienvenido " + user,"Login OK", JOptionPane.INFORMATION_MESSAGE,null);
             new Main().setVisible(true);
             this.dispose();
         }
@@ -235,7 +243,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField tf_password;
+    private javax.swing.JPasswordField tf_password;
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
 }
