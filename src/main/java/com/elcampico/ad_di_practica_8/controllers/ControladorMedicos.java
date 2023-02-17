@@ -31,7 +31,7 @@ public class ControladorMedicos {
     
     //Métodos de ayuda    
     //Verificar que un registro existe previo a lanzar la vista de edición
-    public Medico checkExistingReg(DefaultTableModel tablaRegistros, String numero_colegiado){
+    public Medico checkExistingReg(String numero_colegiado){
         Medico medico = null;
         try {
             String query = "SELECT * FROM medicos WHERE numero_colegiado = ?";
@@ -56,6 +56,24 @@ public class ControladorMedicos {
         }
         finally{
             return medico;
+        }
+    }
+    public int greaterUserId(){
+        try {
+            int user_id = 0;
+            String query = "SELECT user_id FROM medicos ORDER BY user_id DESC LIMIT 0, 1";
+            
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                user_id = rs.getInt("user_id");
+            }
+            return user_id;
+        }
+        catch (SQLException e) {
+            System.err.println("Error en la conexión a la base de datos: " + e.getMessage());
+            return 0;
         }
     }
     
@@ -194,9 +212,11 @@ public class ControladorMedicos {
             String filtro9 = filtros.get("horario_id");
             String filtro10 = filtros.get("user_id");
             
-            String query =  "INSERT INTO medicos " +
-                            "VALUES (?,?,?,?,?,?,?,?,?,?, " + 
-                            "CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+            String query =  "INSERT INTO medicos " + 
+                            "(numero_colegiado, dni, nombre, apellido1, apellido2, " +
+                            "telefono, sexo, especialidad_id, horario_id, user_id, " +
+                            "created_at, updated_at) " + 
+                            "VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
             
             ps = conn.prepareStatement(query);
             

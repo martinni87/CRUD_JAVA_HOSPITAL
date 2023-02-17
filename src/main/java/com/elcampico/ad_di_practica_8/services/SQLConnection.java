@@ -20,7 +20,6 @@ public class SQLConnection {
             //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL,UNAME,PASSWD);
-            //System.out.println("Conexión realizada con éxito.");
             
             /**
              * Importante.

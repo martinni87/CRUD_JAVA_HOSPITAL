@@ -342,12 +342,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscar_medicosActionPerformed
 
     private void btn_nuevo_medicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo_medicosActionPerformed
-        /*String numero_colegiado = tf_numColegiado_medicos.getText();
-        String nombre = tf_nombre_medicos.getText();
-        String apellido1 = tf_apellido1_medicos.getText();
-        new FormularioMedicos(numero_colegiado, nombre, apellido1).setVisible(true);*/
-        this.setVisible(false);
-        new FormularioMedicos().setVisible(true);
+        //Creamos un nuevo user id (solo se guarda si en formulario clicamos en crear nuevo.
+        int user_id = controladorMedicos.greaterUserId() + 1;
+        FormularioMedicos nuevoFormulario = new FormularioMedicos();
+        nuevoFormulario.setFormForCreate(user_id);
+        nuevoFormulario.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_medicosActionPerformed
 
     private void btn_exportarCSV_medicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarCSV_medicosActionPerformed
@@ -404,7 +404,7 @@ public class Main extends javax.swing.JFrame {
  
         //Verificamos que el valor introducido devuelve resultados desde la BD
         //y guardamos null o el valor devuelto en la variable Medico.
-        Medico medico = controladorMedicos.checkExistingReg(tablaRegistros,value);
+        Medico medico = controladorMedicos.checkExistingReg(value);
         
         //Verificamos que podemos pasar ese valor a una nueva instancia de Formulario
         if (medico != null){

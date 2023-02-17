@@ -1,5 +1,8 @@
 package com.elcampico.ad_di_practica_8.views;
 
+import static com.elcampico.ad_di_practica_8.services.ValidacionCredenciales.checkCredenciales;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -59,12 +62,6 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel2, gridBagConstraints);
-
-        tf_usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_usuarioActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -88,6 +85,11 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel3, gridBagConstraints);
 
         btn_iniciar.setText("Iniciar");
+        btn_iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_iniciarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
@@ -95,6 +97,11 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(btn_iniciar, gridBagConstraints);
 
         btn_limpiar.setText("Limpiar");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 7;
@@ -156,9 +163,25 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_usuarioActionPerformed
+    private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
+        boolean check = checkCredenciales(tf_usuario.getText(),tf_password.getText());
+        if (!check){
+            JOptionPane.showMessageDialog(this, 
+                    "Credenciales incorrectas. Revise y vuelva a intentarlo.\n(Pista: U:root, P:root)", 
+                    "Error", JOptionPane.ERROR_MESSAGE,null);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, 
+                  "Credenciales validadas","Login OK", JOptionPane.INFORMATION_MESSAGE,null);
+            new Main().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btn_iniciarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        tf_usuario.setText("");
+        tf_password.setText("");
+    }//GEN-LAST:event_btn_limpiarActionPerformed
 
     /**
      * @param args the command line arguments

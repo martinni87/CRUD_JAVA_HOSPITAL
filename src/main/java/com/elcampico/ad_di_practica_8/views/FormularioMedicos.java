@@ -22,12 +22,21 @@ public class FormularioMedicos extends javax.swing.JFrame {
         this.setTitle("Formulario médicos");
         
         //Modo creación nuevo, seteamos visibilidad de botones nuevo y editar
-        btn_nuevo.setVisible(true);
+        btn_nuevo.setVisible(false);
         btn_editar.setVisible(false);
         
         //Inicializamos un médico vacío
         medico = new Medico();
         controladorMedicos = new ControladorMedicos();
+    }
+    public void setFormForCreate(int user_id){
+        this.medico.setUser_id(user_id);
+        tf_idUsuario.setText(user_id + "");
+        tf_idUsuario.setEditable(false);
+        tf_idUsuario.setBackground(Color.LIGHT_GRAY);
+        btn_nuevo.setVisible(true);
+        btn_borrar.setVisible(false);
+
     }
     
     public void setFormForEdit(Medico medico){
@@ -41,7 +50,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
         formularioNuevo = false;
         
         //Modificamos elementos que se ven, bloqueados, y colores para el caso de modo edición
-        btn_nuevo.setVisible(false);
         btn_editar.setVisible(true);
         tf_numColegiado.setEditable(false);
         tf_idUsuario.setEditable(false);
@@ -92,20 +100,16 @@ public class FormularioMedicos extends javax.swing.JFrame {
         tf_especialidad = new javax.swing.JTextField();
         tf_horario = new javax.swing.JTextField();
         tf_idUsuario = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        area_mensajes = new javax.swing.JTextArea();
         btn_nuevo = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
         btn_borrar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         btn_volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(228, 228, 228));
+        setMinimumSize(new java.awt.Dimension(750, 330));
         setResizable(false);
-        setSize(new java.awt.Dimension(820, 400));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulario de médicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 18))); // NOI18N
         jPanel1.setToolTipText("");
@@ -132,6 +136,9 @@ public class FormularioMedicos extends javax.swing.JFrame {
         jLabel9.setText("Horario");
 
         jLabel10.setText("ID usuario");
+
+        tf_sexo.setText("hombre/mujer");
+        tf_sexo.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -210,30 +217,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        area_mensajes.setEditable(false);
-        area_mensajes.setColumns(20);
-        area_mensajes.setRows(5);
-        jScrollPane1.setViewportView(area_mensajes);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         btn_nuevo.setText("Nuevo");
         btn_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,9 +245,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel11.setText("Mensajes del servidor");
-
         btn_volver.setText("Volver");
         btn_volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,13 +259,9 @@ public class FormularioMedicos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 20, Short.MAX_VALUE)
                         .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,18 +280,14 @@ public class FormularioMedicos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_nuevo)
                     .addComponent(btn_editar)
                     .addComponent(btn_borrar)
                     .addComponent(btn_volver)
                     .addComponent(btn_limpiar))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -341,7 +313,43 @@ public class FormularioMedicos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
-        
+        //Comprobación inicial. Es obligatorio rellenar todos los campos
+        if (!checkCamposRellenos()){
+            JOptionPane.showMessageDialog(this,
+                    "Todos los campos son obligatorios.",
+                    "información",
+                    JOptionPane.INFORMATION_MESSAGE, null);
+        }
+        else{
+            HashMap<String,String> filtros = new HashMap<>();
+
+            int userResponse = JOptionPane.showConfirmDialog(this,
+                    "Está a punto de crear un registro nuevo. ¿Desea continuar?",
+                    "ALERTA",
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.WARNING_MESSAGE, null);
+
+            // valor 0 == YES, valor 1 == NO
+            if (userResponse == 0){
+                filtros.put("numero_colegiado", tf_numColegiado.getText());
+                filtros.put("dni", tf_dni.getText());
+                filtros.put("nombre", tf_nombre.getText());
+                filtros.put("apellido1", tf_apellido1.getText());
+                filtros.put("apellido2", tf_apellido2.getText());
+                filtros.put("telefono", tf_telefono.getText());
+                filtros.put("sexo", tf_sexo.getText());
+                filtros.put("especialidad_id", tf_especialidad.getText());
+                filtros.put("horario_id", tf_horario.getText());
+                filtros.put("user_id", tf_idUsuario.getText());
+
+                controladorMedicos.createNew(filtros);
+                String operacion = "Se ha creado un nuevo registro con id: " + tf_idUsuario.getText();
+                JOptionPane.showMessageDialog(this,operacion, "Registro actualizado", JOptionPane.INFORMATION_MESSAGE,null);
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
+            }
+        }
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
@@ -357,9 +365,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
             new Main().setVisible(true);
             this.dispose();
         }
-        
-        
-
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
@@ -395,35 +400,78 @@ public class FormularioMedicos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_borrarActionPerformed
 
+    private boolean checkCamposRellenos(){
+        if (tf_numColegiado.getText().isEmpty()){
+            return false;
+        }
+        if (tf_dni.getText().isEmpty()){
+            return false;
+        }
+        if (tf_nombre.getText().isEmpty()){
+            return false;
+        }
+        if (tf_apellido1.getText().isEmpty()){
+            return false;
+        }
+        if (tf_apellido2.getText().isEmpty()){
+            return false;
+        }
+        if (tf_telefono.getText().isEmpty()){
+            return false;
+        }
+        if (tf_sexo.getText().isEmpty()){
+            return false;
+        }
+        if (tf_especialidad.getText().isEmpty()){
+            return false;
+        }
+        if (tf_horario.getText().isEmpty()){
+            return false;
+        }
+        if (tf_idUsuario.getText().isEmpty()){
+            return false;
+        }
+        return true;
+    }
+    
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-        HashMap<String,String> filtros = new HashMap<>();
-
-        int userResponse = JOptionPane.showConfirmDialog(this,
-                "Está a punto de editar un registro. ¿Desea continuar?",
-                "ALERTA",
-                JOptionPane.YES_NO_OPTION, 
-                JOptionPane.WARNING_MESSAGE, null);
-        
-        // valor 0 == YES, valor 1 == NO
-        if (userResponse == 0){
-            filtros.put("id",medico.getId() + "");
-            filtros.put("numero_colegiado", tf_numColegiado.getText());
-            filtros.put("dni", tf_dni.getText());
-            filtros.put("nombre", tf_nombre.getText());
-            filtros.put("apellido1", tf_apellido1.getText());
-            filtros.put("apellido2", tf_apellido2.getText());
-            filtros.put("telefono", tf_telefono.getText());
-            filtros.put("sexo", tf_sexo.getText());
-            filtros.put("especialidad_id", tf_especialidad.getText());
-            filtros.put("horario_id", tf_horario.getText());
-            filtros.put("user_id", tf_idUsuario.getText());
-            
-            controladorMedicos.updateData(filtros);
-            String operacion = "Se ha actualizado el registro con id: " + medico.getId();
-            JOptionPane.showMessageDialog(this,operacion, "Registro actualizado", JOptionPane.INFORMATION_MESSAGE,null);
+        //Comprobación inicial. Es obligatorio rellenar todos los campos
+        if (!checkCamposRellenos()){
+            JOptionPane.showMessageDialog(this,
+                    "Todos los campos son obligatorios.",
+                    "información",
+                    JOptionPane.INFORMATION_MESSAGE, null);
         }
         else{
-            JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
+            HashMap<String,String> filtros = new HashMap<>();
+
+            int userResponse = JOptionPane.showConfirmDialog(this,
+                    "Está a punto de editar un registro. ¿Desea continuar?",
+                    "ALERTA",
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.WARNING_MESSAGE, null);
+
+            // valor 0 == YES, valor 1 == NO
+            if (userResponse == 0){
+                filtros.put("id",medico.getId() + "");
+                filtros.put("numero_colegiado", tf_numColegiado.getText());
+                filtros.put("dni", tf_dni.getText());
+                filtros.put("nombre", tf_nombre.getText());
+                filtros.put("apellido1", tf_apellido1.getText());
+                filtros.put("apellido2", tf_apellido2.getText());
+                filtros.put("telefono", tf_telefono.getText());
+                filtros.put("sexo", tf_sexo.getText());
+                filtros.put("especialidad_id", tf_especialidad.getText());
+                filtros.put("horario_id", tf_horario.getText());
+                filtros.put("user_id", tf_idUsuario.getText());
+
+                controladorMedicos.updateData(filtros);
+                String operacion = "Se ha actualizado el registro con id: " + medico.getId();
+                JOptionPane.showMessageDialog(this,operacion, "Registro actualizado", JOptionPane.INFORMATION_MESSAGE,null);
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
+            }
         }
     }//GEN-LAST:event_btn_editarActionPerformed
 
@@ -463,7 +511,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea area_mensajes;
     private javax.swing.JButton btn_borrar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_limpiar;
@@ -471,7 +518,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
     private javax.swing.JButton btn_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -482,8 +528,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tf_apellido1;
     private javax.swing.JTextField tf_apellido2;
     private javax.swing.JTextField tf_dni;
