@@ -71,7 +71,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
         tf_sexo.setSelectedIndex(medico.getSexo().equals("hombre")?0:1);
         tf_especialidad.setSelectedIndex(medico.getEspecialidad_id()-1);
         tf_horario.setSelectedIndex(medico.getHorario_id()-1);
-        tf_idUsuario.setText(Integer.toString(medico.getUser_id()));
+        tf_idUsuario.setText(Long.toString(medico.getUser_id()));
     }
 
     /**
@@ -329,7 +329,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
         if (!checkCamposRellenos()){
             JOptionPane.showMessageDialog(this,
                     "Todos los campos son obligatorios.",
-                    "información",
+                    "Información",
                     JOptionPane.INFORMATION_MESSAGE, null);
         }
         else{
@@ -392,7 +392,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
         tf_sexo.setSelectedIndex(medico.getSexo().equals("hombre")?0:1);
         tf_especialidad.setSelectedIndex(medico.getEspecialidad_id()-1);
         tf_horario.setSelectedIndex(medico.getHorario_id()-1);
-        tf_idUsuario.setText(Integer.toString(medico.getUser_id()));
+        tf_idUsuario.setText(Long.toString(medico.getUser_id()));
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
     private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed

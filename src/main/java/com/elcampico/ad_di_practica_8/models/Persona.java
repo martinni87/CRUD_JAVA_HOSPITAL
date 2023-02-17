@@ -11,7 +11,7 @@ public class Persona extends Object {
     private String apellido2;
     private String telefono;
     private String sexo;
-    private int user_id;
+    private long user_id;
     private Date created_at;
     private Date updated_at;
 
@@ -30,7 +30,7 @@ public class Persona extends Object {
     }
     
     //Constructor con parámetros
-    public Persona(int id, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, int user_id, Date created_at, Date updated_at) {
+    public Persona(int id, String dni, String nombre, String apellido1, String apellido2, String telefono, String sexo, long user_id, Date created_at, Date updated_at) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
@@ -65,7 +65,7 @@ public class Persona extends Object {
     public String getSexo() {
         return sexo;
     }
-    public int getUser_id() {
+    public long getUser_id() {
         return user_id;
     }
     public Date getCreated_at() {
@@ -97,7 +97,7 @@ public class Persona extends Object {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    public void setUser_id(int user_id) {
+    public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
     public void setCreated_at(Date created_at) {

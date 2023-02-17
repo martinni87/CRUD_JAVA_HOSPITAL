@@ -18,23 +18,23 @@ public class Medico extends Persona {
    /**
      * <h1>CONSTRUCTOR</h1>
      * @param id: integer autoincremental, valor único
-     * @param numero_colegiado: integer, valor único
-     * @param dni: String, valor único
+     * @param numero_colegiado: long, valor único máx 10 caracteres
+     * @param dni: String, valor único máx 9 caracteres
      * @param nombre: String
      * @param apellido1: String
      * @param apellido2: String
-     * @param telefono: String
+     * @param telefono: String máx 15 caracteres
      * @param sexo: String
      * @param especialidad_id: integer, opción 1,2,3,4,5
      * @param horario_id: integer, opción 1,2,3,4
-     * @param user_id: integer, primary key, valor non-nullable, valor único
+     * @param user_id: long, primary key, valor non-nullable, valor único
      * @param created_at: formato fecha
      * @param updated_at: formato fecha
      */
     //Constructor parametrizado
     public Medico(int id, long numero_colegiado, String dni, String nombre,
                    String apellido1, String apellido2, String telefono,
-                   String sexo, int especialidad_id, int horario_id, int user_id,
+                   String sexo, int especialidad_id, int horario_id, long user_id,
                    Date created_at, Date updated_at) {
         super(id, dni, nombre, apellido1, apellido2, telefono, sexo, user_id,
                 created_at, updated_at);

@@ -20,7 +20,7 @@ public class SQLConnection {
             //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL,UNAME,PASSWD);
-            
+           
             /**
              * Importante.
              * A partir de esta línea se llama en los controladores a diferentes métodos

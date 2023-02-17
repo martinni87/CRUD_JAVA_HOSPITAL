@@ -3,8 +3,8 @@ package com.elcampico.ad_di_practica_8.models;
 import java.util.Date;
 
 public class Paciente extends Persona {
-    private int sip;
-    private int fecha_nacimiento;
+    private long sip;
+    private String fecha_nacimiento;
     private String localidad;
     private String calle;
     private String numero;
@@ -13,17 +13,30 @@ public class Paciente extends Persona {
     private int medico_id;
     private int enfermero_id;
     
+    public Paciente(){
+        super();
+        sip = 0;
+        fecha_nacimiento = "";
+        localidad = "";
+        calle = "";
+        numero = "";
+        puerta = "";
+        piso = "";
+        medico_id = 0;
+        enfermero_id = 0;
+    }
+    
     /**
      * <h1>CONSTRUCTOR</h1>
-     * @param id integer autoincremental, valor único
-     * @param sip integer, valor único
+     * @param id int autoincremental, valor único
+     * @param sip long, valor único
      * @param dni String, valor único
      * @param nombre String
      * @param apellido1 String
      * @param apellido2 String
      * @param telefono String
      * @param sexo String
-     * @param fecha_nacimiento Date
+     * @param fecha_nacimiento String (por facilidad de trabajo)
      * @param localidad String (los valores de address pueden contener letras)
      * @param calle String (los valores de address pueden contener letras)
      * @param numero String (los valores de address pueden contener letras)
@@ -36,10 +49,10 @@ public class Paciente extends Persona {
      * @param updated_at Date
      */
 
-    public Paciente(int id, int sip, String dni, String nombre, String apellido1,
-                    String apellido2, String telefono, String sexo, int fecha_nacimiento,
+    public Paciente(int id, long sip, String dni, String nombre, String apellido1,
+                    String apellido2, String telefono, String sexo, String fecha_nacimiento,
                     String localidad, String calle, String numero, String puerta,
-                    String piso, int medico_id, int enfermero_id, int user_id,
+                    String piso, int medico_id, int enfermero_id, long user_id,
                     Date created_at, Date updated_at) {
         super(id, dni, nombre, apellido1, apellido2, telefono, sexo, user_id,
                 created_at, updated_at);
@@ -55,10 +68,10 @@ public class Paciente extends Persona {
     }
     
     //Getters
-    public int getSip() {
+    public long getSip() {
         return sip;
     }
-    public int getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento;
     }
     public String getLocalidad() {
@@ -84,10 +97,10 @@ public class Paciente extends Persona {
     }
     
     //Setters
-    public void setSip(int sip) {
+    public void setSip(long sip) {
         this.sip = sip;
     }
-    public void setFecha_nacimiento(int fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
     public void setLocalidad(String localidad) {
@@ -111,4 +124,15 @@ public class Paciente extends Persona {
     public void setEnfermero_id(int enfermero_id) {
         this.enfermero_id = enfermero_id;
     }
+    
+    //Printall
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "sip=" + sip + ", fecha_nacimiento=" + fecha_nacimiento + 
+                ", localidad=" + localidad + ", calle=" + calle + ", numero=" + numero + 
+                ", puerta=" + puerta + ", piso=" + piso + ", medico_id=" + medico_id + 
+                ", enfermero_id=" + enfermero_id + '}';
+    }
+    
 }
