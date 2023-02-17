@@ -2,8 +2,8 @@ package com.elcampico.ad_di_practica_8.views;
 
 import com.elcampico.ad_di_practica_8.controllers.ControladorMedicos;
 import com.elcampico.ad_di_practica_8.models.Medico;
+import com.elcampico.ad_di_practica_8.services.CharacterLimiter;
 import java.awt.Color;
-import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -28,6 +28,11 @@ public class FormularioMedicos extends javax.swing.JFrame {
         //Inicializamos un médico vacío
         medico = new Medico();
         controladorMedicos = new ControladorMedicos();
+        
+        //Definimos cantidad de caracteres máximos (segun BD) para:
+        tf_numColegiado.setDocument(new CharacterLimiter(10));
+        tf_dni.setDocument(new CharacterLimiter(9));
+        tf_telefono.setDocument(new CharacterLimiter(15));
     }
     public void setFormForCreate(int user_id){
         this.medico.setUser_id(user_id);
@@ -57,15 +62,15 @@ public class FormularioMedicos extends javax.swing.JFrame {
         tf_idUsuario.setBackground(Color.LIGHT_GRAY);
         
         //Seteamos valores de campos a datos existentes en la BD
-        tf_numColegiado.setText(Integer.toString(medico.getNumero_colegiado()));
+        tf_numColegiado.setText(Long.toString(medico.getNumero_colegiado()));
         tf_dni.setText(medico.getDni());
         tf_nombre.setText(medico.getNombre());
         tf_apellido1.setText(medico.getApellido1());
         tf_apellido2.setText(medico.getApellido2());
         tf_telefono.setText(medico.getTelefono());
-        tf_sexo.setText(medico.getSexo());
-        tf_especialidad.setText(Integer.toString(medico.getEspecialidad_id()));
-        tf_horario.setText(Integer.toString(medico.getHorario_id()));
+        tf_sexo.setSelectedIndex(medico.getSexo().equals("hombre")?0:1);
+        tf_especialidad.setSelectedIndex(medico.getEspecialidad_id()-1);
+        tf_horario.setSelectedIndex(medico.getHorario_id()-1);
         tf_idUsuario.setText(Integer.toString(medico.getUser_id()));
     }
 
@@ -78,6 +83,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         tf_numColegiado = new javax.swing.JTextField();
@@ -96,10 +102,10 @@ public class FormularioMedicos extends javax.swing.JFrame {
         tf_apellido1 = new javax.swing.JTextField();
         tf_apellido2 = new javax.swing.JTextField();
         tf_telefono = new javax.swing.JTextField();
-        tf_especialidad = new javax.swing.JTextField();
-        tf_horario = new javax.swing.JTextField();
         tf_idUsuario = new javax.swing.JTextField();
-        tf_sexo = new javax.swing.JTextField();
+        tf_sexo = new javax.swing.JComboBox<>();
+        tf_especialidad = new javax.swing.JComboBox<>();
+        tf_horario = new javax.swing.JComboBox<>();
         btn_nuevo = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
         btn_borrar = new javax.swing.JButton();
@@ -119,7 +125,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
 
         jLabel1.setText("Nº Colegiado");
 
-        jLabel2.setText("DNI");
+        jLabel2.setText("DNI (8+ letra)");
 
         jLabel3.setText("Nombre");
 
@@ -136,6 +142,12 @@ public class FormularioMedicos extends javax.swing.JFrame {
         jLabel9.setText("Horario");
 
         jLabel10.setText("ID usuario");
+
+        tf_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "hombre", "mujer" }));
+
+        tf_especialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+
+        tf_horario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,7 +168,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
                     .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_numColegiado, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,17 +180,17 @@ public class FormularioMedicos extends javax.swing.JFrame {
                                 .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(tf_sexo))))
+                                .addComponent(tf_sexo, 0, 197, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_idUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_horario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tf_idUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(tf_especialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_horario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -337,14 +349,16 @@ public class FormularioMedicos extends javax.swing.JFrame {
                 filtros.put("apellido1", tf_apellido1.getText());
                 filtros.put("apellido2", tf_apellido2.getText());
                 filtros.put("telefono", tf_telefono.getText());
-                filtros.put("sexo", tf_sexo.getText());
-                filtros.put("especialidad_id", tf_especialidad.getText());
-                filtros.put("horario_id", tf_horario.getText());
+                filtros.put("sexo", (String) tf_sexo.getSelectedItem());
+                filtros.put("especialidad_id", (String) tf_especialidad.getSelectedItem());
+                filtros.put("horario_id", (String) tf_horario.getSelectedItem());
                 filtros.put("user_id", tf_idUsuario.getText());
 
                 controladorMedicos.createNew(filtros);
                 String operacion = "Se ha creado un nuevo registro con id: " + tf_idUsuario.getText();
                 JOptionPane.showMessageDialog(this,operacion, "Registro actualizado", JOptionPane.INFORMATION_MESSAGE,null);
+                new Main().setVisible(true);
+                this.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
@@ -369,15 +383,15 @@ public class FormularioMedicos extends javax.swing.JFrame {
 
     private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
         //Recuperamos valores iniciales del objeto médico.
-        tf_numColegiado.setText(Integer.toString(medico.getNumero_colegiado()));
+        tf_numColegiado.setText(Long.toString(medico.getNumero_colegiado()));
         tf_dni.setText(medico.getDni());
         tf_nombre.setText(medico.getNombre());
         tf_apellido1.setText(medico.getApellido1());
         tf_apellido2.setText(medico.getApellido2());
         tf_telefono.setText(medico.getTelefono());
-        tf_sexo.setText(medico.getSexo());
-        tf_especialidad.setText(Integer.toString(medico.getEspecialidad_id()));
-        tf_horario.setText(Integer.toString(medico.getHorario_id()));
+        tf_sexo.setSelectedIndex(medico.getSexo().equals("hombre")?0:1);
+        tf_especialidad.setSelectedIndex(medico.getEspecialidad_id()-1);
+        tf_horario.setSelectedIndex(medico.getHorario_id()-1);
         tf_idUsuario.setText(Integer.toString(medico.getUser_id()));
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
@@ -419,15 +433,6 @@ public class FormularioMedicos extends javax.swing.JFrame {
         if (tf_telefono.getText().isEmpty()){
             return false;
         }
-        if (tf_sexo.getText().isEmpty()){
-            return false;
-        }
-        if (tf_especialidad.getText().isEmpty()){
-            return false;
-        }
-        if (tf_horario.getText().isEmpty()){
-            return false;
-        }
         if (tf_idUsuario.getText().isEmpty()){
             return false;
         }
@@ -460,14 +465,16 @@ public class FormularioMedicos extends javax.swing.JFrame {
                 filtros.put("apellido1", tf_apellido1.getText());
                 filtros.put("apellido2", tf_apellido2.getText());
                 filtros.put("telefono", tf_telefono.getText());
-                filtros.put("sexo", tf_sexo.getText());
-                filtros.put("especialidad_id", tf_especialidad.getText());
-                filtros.put("horario_id", tf_horario.getText());
+                filtros.put("sexo", (String) tf_sexo.getSelectedItem());
+                filtros.put("especialidad_id", (String) tf_especialidad.getSelectedItem());
+                filtros.put("horario_id", (String) tf_horario.getSelectedItem());
                 filtros.put("user_id", tf_idUsuario.getText());
 
                 controladorMedicos.updateData(filtros);
                 String operacion = "Se ha actualizado el registro con id: " + medico.getId();
                 JOptionPane.showMessageDialog(this,operacion, "Registro actualizado", JOptionPane.INFORMATION_MESSAGE,null);
+                new Main().setVisible(true);
+                this.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(this,"Operación cancelada", "Operación cancelada", JOptionPane.INFORMATION_MESSAGE,null);
@@ -516,6 +523,7 @@ public class FormularioMedicos extends javax.swing.JFrame {
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JButton btn_volver;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -531,12 +539,12 @@ public class FormularioMedicos extends javax.swing.JFrame {
     private javax.swing.JTextField tf_apellido1;
     private javax.swing.JTextField tf_apellido2;
     private javax.swing.JTextField tf_dni;
-    private javax.swing.JTextField tf_especialidad;
-    private javax.swing.JTextField tf_horario;
+    private javax.swing.JComboBox<String> tf_especialidad;
+    private javax.swing.JComboBox<String> tf_horario;
     private javax.swing.JTextField tf_idUsuario;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_numColegiado;
-    private javax.swing.JTextField tf_sexo;
+    private javax.swing.JComboBox<String> tf_sexo;
     private javax.swing.JTextField tf_telefono;
     // End of variables declaration//GEN-END:variables
 }

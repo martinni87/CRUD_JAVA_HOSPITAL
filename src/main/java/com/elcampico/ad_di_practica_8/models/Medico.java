@@ -3,7 +3,7 @@ package com.elcampico.ad_di_practica_8.models;
 import java.util.Date;
 
 public class Medico extends Persona {
-    private int numero_colegiado;
+    private long numero_colegiado;
     private int especialidad_id;
     private int horario_id;
 
@@ -32,7 +32,7 @@ public class Medico extends Persona {
      * @param updated_at: formato fecha
      */
     //Constructor parametrizado
-    public Medico(int id, int numero_colegiado, String dni, String nombre,
+    public Medico(int id, long numero_colegiado, String dni, String nombre,
                    String apellido1, String apellido2, String telefono,
                    String sexo, int especialidad_id, int horario_id, int user_id,
                    Date created_at, Date updated_at) {
@@ -44,7 +44,7 @@ public class Medico extends Persona {
     }
 
     //Getters
-    public int getNumero_colegiado() {
+    public long getNumero_colegiado() {
         return numero_colegiado;
     }
 
@@ -57,7 +57,7 @@ public class Medico extends Persona {
     }
 
     //Setters
-    public void setNumero_colegiado(int numero_colegiado) {
+    public void setNumero_colegiado(long numero_colegiado) {
         this.numero_colegiado = numero_colegiado;
     }
     public void setEspecialidad_id(int especialidad_id) {

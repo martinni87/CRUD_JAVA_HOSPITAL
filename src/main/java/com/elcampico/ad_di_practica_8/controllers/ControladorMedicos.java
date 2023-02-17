@@ -43,7 +43,7 @@ public class ControladorMedicos {
 
             if(rs.next()){
                 medico = new Medico(
-                        rs.getInt("id"), rs.getInt("numero_colegiado"), rs.getString("dni"),
+                        rs.getInt("id"), rs.getLong("numero_colegiado"), rs.getString("dni"),
                         rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),
                         rs.getString("telefono"),rs.getString("sexo"),rs.getInt("especialidad_id"),
                         rs.getInt("horario_id"),rs.getInt("user_id"),
@@ -93,6 +93,7 @@ public class ControladorMedicos {
             query += " AND numero_colegiado LIKE ?";
             query += " AND nombre LIKE ?";
             query += " AND apellido1 LIKE ?";
+            query += " ORDER BY id DESC"; //VEMOS LOS ULTIMOS REGISTROS AL INICIO
             
             //Inicializamos preparedStatement: Preparamos la query con la conexión.
             ps = conn.prepareStatement(query);
@@ -121,7 +122,7 @@ public class ControladorMedicos {
 
         while(rs.next()){
             Medico medico = new Medico(
-                    rs.getInt("id"), rs.getInt("numero_colegiado"), rs.getString("dni"),
+                    rs.getInt("id"), rs.getLong("numero_colegiado"), rs.getString("dni"),
                     rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),
                     rs.getString("telefono"),rs.getString("sexo"),rs.getInt("especialidad_id"),
                     rs.getInt("horario_id"),rs.getInt("user_id"),
